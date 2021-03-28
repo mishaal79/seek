@@ -1,39 +1,31 @@
 import os
 
 from flask import Flask
-from flask_restx import Api, Resource
+from flask_restx import Api
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
-app = Flask(__name__)
-
-app_settings = os.getenv("APP_SETTINGS")
-app.config.from_object(app_settings)
-
-# api.init_app(app)
-api = Api(app)
-db.init_app(app)
+api = Api()
 
 
-class User(db.Model):
-    __tablename__ = "users"
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    username = db.Column(db.String(128), nullable=False)
-    email = db.Column(db.String(128), nullable=False)
-    active = db.Column(db.Boolean(), default=True, nullable=False)
+def create_app():
+    """ "
+    Flask application factory
+    Return: instance of flask app
+    """
+    app = Flask(__name__)
 
-    def __init__(self, username, email):
-        self.username = username
-        self.email = email
+    app.config.from_object(os.getenv("APP_SETTINGS"))
+    api.init_app(app, "Seek API")
+    db.init_app(app)
 
+    # register blueprints
+    from seek.api.ping import ping_blueprint
 
-# @api.route("/hello")
-class Ping(Resource):
-    def get(self):
-        return {
-            "status": "success",
-            "message": "pong pong",
-        }
+    app.register_blueprint(ping_blueprint)
 
+    @app.shell_context_processor
+    def ctx():
+        return {"app": app, "db": db}
 
-api.add_resource(Ping)
+    return app

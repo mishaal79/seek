@@ -1,7 +1,9 @@
 from flask.cli import FlaskGroup
-from seek import app, db
+from seek import create_app, db
+from seek.api.models import User
 
-cli = FlaskGroup(app)
+
+cli = FlaskGroup(create_app=create_app())
 
 
 @cli.command("recreate_db")

@@ -9,7 +9,6 @@ services:
     ports:
       - 5555:5000
     environment: 
-      - FLASK_APP=${FLASK_APP}
       - FLASK_ENV=${FLASK_ENV}
       - DB_URL=${DB_URL}
       - DB_TEST_URL=${DB_TEST_URL}
