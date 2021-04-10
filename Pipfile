@@ -1,0 +1,35 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+aniso8601 = "==9.0.1"
+attrs = "==20.3.0"
+click = "==7.1.2"
+flask-restx = "==0.2.0"
+greenlet = "==1.0.0"
+itsdangerous = "==1.1.0"
+jsonschema = "==3.2.0"
+psycopg2-binary = "==2.8.6"
+pyrsistent = "==0.17.3"
+pytz = "==2021.1"
+six = "==1.15.0"
+Flask-SQLAlchemy = "==2.5.1"
+Flask = "==1.1.2"
+Jinja2 = "==2.11.3"
+MarkupSafe = "==1.1.1"
+SQLAlchemy = "==1.4.2"
+Werkzeug = "==1.0.1"
+
+[dev-packages]
+black = "*"
+flake8 = "*"
+pytest = "*"
+isort = "*"
+
+[requires]
+python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true
