@@ -3,7 +3,7 @@ from seek import create_app, db
 from seek.api.models import User
 
 
-cli = FlaskGroup(create_app=create_app())
+cli = FlaskGroup(create_app=create_app)
 
 
 @cli.command("recreate_db")

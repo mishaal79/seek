@@ -1,4 +1,3 @@
-from sqlalchemy.sql import func
 from seek import db
 
 
