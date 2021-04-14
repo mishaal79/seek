@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -xe
 
 echo "Waiting for database"
 

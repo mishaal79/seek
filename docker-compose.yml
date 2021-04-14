@@ -3,7 +3,6 @@ services:
   seek:
     build:
       context: .
-    entrypoint: ["/app/entrypoint.sh"]
     volumes:
       - .:/app
     ports:
@@ -12,16 +11,17 @@ services:
       - FLASK_ENV=${FLASK_ENV}
       - DB_URL=${DB_URL}
       - DB_TEST_URL=${DB_TEST_URL}
+      - APP_SETTINGS=${APP_SETTINGS}
     depends_on: 
-      - database
+      - api-db
   
-  database:
+  api-db:
     build:
       context: ./seek/db 
     expose: 
       - 5432
     environment: 
-      - PG_USER={PG_USER}
-      - PG_PASSWORD={PG_PASSWORD}
+      - POSTGRES_USER={POSTGRES_USER}
+      - POSTGRES_PASSWORD={POSTGRES_PASSWORD}
 
 

@@ -1,4 +1,6 @@
 FROM python:3.8-slim-buster as base
+RUN apt-get update && apt-get install -y netcat
+
 
 WORKDIR /app
 
@@ -12,3 +14,4 @@ COPY . .
 
 COPY ./entrypoint.sh ./
 RUN chmod +x /app/entrypoint.sh
+CMD bash /app/entrypoint.sh
