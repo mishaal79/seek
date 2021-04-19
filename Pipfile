@@ -24,10 +24,7 @@ Werkzeug = "==1.0.1"
 python-dotenv = "*"
 
 [dev-packages]
-black = "*"
-flake8 = "*"
 pytest = "*"
-isort = "*"
 
 [requires]
 python_version = "3.8"

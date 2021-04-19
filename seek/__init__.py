@@ -7,6 +7,10 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
+def register_blueprints(app):
+    raise NotImplementedError
+
+
 def create_app():
     """ "
     Flask application factory
@@ -19,8 +23,10 @@ def create_app():
 
     # register blueprints
     from seek.api.ping import ping_blueprint
+    from seek.api.users import users_blueprint
 
     app.register_blueprint(ping_blueprint)
+    app.register_blueprint(users_blueprint)
 
     @app.shell_context_processor
     def ctx():
