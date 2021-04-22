@@ -7,7 +7,7 @@ from seek import create_app, db
 
 @pytest.fixture
 def test_app(scope="module") -> Flask:
-    """ Returns an test_client instance initialised with test config"""
+    """ Returns a flask app instance initialised with test config"""
     app = create_app()
     app.config.from_object("seek.config.TestingConfig")
     with app.app_context():
@@ -16,7 +16,7 @@ def test_app(scope="module") -> Flask:
 
 @pytest.fixture
 def test_client(scope="module") -> FlaskClient:
-    """ Returns a test_client instance initialised with test config"""
+    """ Returns a flask test client instance initialised with test config"""
     app = create_app()
     app.config.from_object("seek.config.TestingConfig")
     with app.app_context():
