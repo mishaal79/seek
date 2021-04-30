@@ -1,6 +1,5 @@
 from flask import Blueprint, request
 from flask.globals import current_app
-from flask.helpers import make_response
 from flask_restx import Api, Resource, fields
 
 from seek import db
@@ -22,6 +21,7 @@ user = api.model(
 
 
 @api.route("/users")
+@api.route("/users/<id>")
 class Users(Resource):
     @api.expect(user, validate=True)
     def post(self):
@@ -38,10 +38,18 @@ class Users(Resource):
         try:
             current_app.logger.info("Creating user on database")
             db.session.add(user)
-            current_app.logger.info("user added to database")
+            current_app.logger.info("Added user to database")
             db.session.commit()
         except Exception as e:
             response["message"] = f"Failed to add user to database: {e.args}"
             return response, 500
         response["message"] = "success"
         return response, 201
+
+    @api.marshal_with(user)
+    def get(self, id):
+        user = User.query.filter_by(id=id).first()
+        if not user:
+            api.abort(404, f"user id:{id} does not exist")
+        else:
+            return user, 200
