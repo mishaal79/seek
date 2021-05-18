@@ -3,6 +3,7 @@ from flask.testing import FlaskClient
 from flask_sqlalchemy import SQLAlchemy
 import pytest
 from seek import create_app, db
+from seek.api.models import User
 
 
 @pytest.fixture
@@ -30,3 +31,18 @@ def test_db(scope="module") -> SQLAlchemy:
     yield db
     db.session.remove()
     db.drop_all()
+
+
+@pytest.fixture(scope="function")
+def add_user():
+    """
+    Returns a new test user
+    """
+
+    def _add_user(username, password):
+        user = User(username, password)
+        db.session.add(user)
+        db.session.commit()
+        return user
+
+    return _add_user
