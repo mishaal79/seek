@@ -8,9 +8,9 @@ services:
     ports:
       - 5555:5000
     environment: 
-      - FLASK_ENV=${FLASK_ENV}
       - DB_URL=${DB_URL}
-      - APP_SETTINGS=${APP_SETTINGS}
+      - APP_SETTINGS=seek.config.Production
+      - APP_KEY=${APP_KEY}
     depends_on: 
       - api-db
   

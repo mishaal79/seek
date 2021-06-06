@@ -13,5 +13,5 @@ RUN pip install -r requirements.txt
 COPY . .
 
 COPY ./entrypoint.sh ./
-RUN chmod +x /app/entrypoint.sh
-CMD bash /app/entrypoint.sh
+RUN chmod +x entrypoint.sh
+CMD bash /app/entrypoint.sh api-db

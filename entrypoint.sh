@@ -1,9 +1,10 @@
 #!/bin/bash -xe
 
+DATABASE_HOST = $1
 echo "Waiting for database"
 
-while ! nc -z database 5432; do
-    sleep 0.1
+while ! nc -zv $DATABASE_HOST 5432; do
+    sleep 1
 done
 
 echo "Database initialised"

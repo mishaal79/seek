@@ -46,7 +46,7 @@ class UsersList(Resource):
         response["message"] = "success"
         return response, 201
 
-    @api.marshal_with(user, as_list=True)
+    @api.marshal_list_with(user)
     def get(self):
         return User.query.all(), 200
 

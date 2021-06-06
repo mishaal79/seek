@@ -7,7 +7,8 @@ class Base:
     SECRET_KEY = os.getenv("APP_KEY", "secret")
 
 
-class Devlopment(Base):
+class Development(Base):
+    DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.getenv("DB_TEST_URL")
 
 
@@ -16,5 +17,5 @@ class Testing(Base):
     SQLALCHEMY_DATABASE_URI = os.getenv("DB_TEST_URL")
 
 
-class Productoin(Base):
+class Production(Base):
     SQLALCHEMY_DATABASE_URI = os.getenv("DB_URL")
