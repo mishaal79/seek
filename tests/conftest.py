@@ -7,7 +7,7 @@ from seek.api.models import User
 
 
 @pytest.fixture
-def test_app(scope="module", config="seek.config.TestingConfig") -> Flask:
+def test_app(scope="module", config="seek.config.Testing") -> Flask:
     """ Returns a flask app instance initialised with test config"""
     app = create_app()
     app.config.from_object(config)

@@ -1,20 +1,20 @@
 import os
 
 
-class BaseConfig:
+class Base:
     TESTING = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = os.getenv("APP_KEY", "secret")
 
 
-class DevelopmentConfig(BaseConfig):
+class Devlopment(Base):
     SQLALCHEMY_DATABASE_URI = os.getenv("DB_TEST_URL")
 
 
-class TestingConfig(BaseConfig):
+class Testing(Base):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = os.getenv("DB_TEST_URL")
 
 
-class ProductionConfig(BaseConfig):
+class Productoin(Base):
     SQLALCHEMY_DATABASE_URI = os.getenv("DB_URL")
