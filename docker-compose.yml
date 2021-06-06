@@ -10,7 +10,6 @@ services:
     environment: 
       - FLASK_ENV=${FLASK_ENV}
       - DB_URL=${DB_URL}
-      - DB_TEST_URL=${DB_TEST_URL}
       - APP_SETTINGS=${APP_SETTINGS}
     depends_on: 
       - api-db

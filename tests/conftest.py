@@ -7,25 +7,23 @@ from seek.api.models import User
 
 
 @pytest.fixture
-def test_app(scope="module") -> Flask:
+def test_app(scope="module", config="seek.config.TestingConfig") -> Flask:
     """ Returns a flask app instance initialised with test config"""
     app = create_app()
-    app.config.from_object("seek.config.TestingConfig")
+    app.config.from_object(config)
     with app.app_context():
         yield app
 
 
 @pytest.fixture
-def test_client(scope="module") -> FlaskClient:
+def test_client(test_app, test_db, scope="function", autouse=True) -> FlaskClient:
     """ Returns a flask test client instance initialised with test config"""
-    app = create_app()
-    app.config.from_object("seek.config.TestingConfig")
-    with app.app_context():
-        yield app.test_client()
+    with test_app.app_context():
+        yield test_app.test_client()
 
 
 @pytest.fixture
-def test_db(scope="module") -> SQLAlchemy:
+def test_db(scope="function", autouse=True) -> SQLAlchemy:
     """ Returns a db instance initialised with test config"""
     db.create_all()
     yield db

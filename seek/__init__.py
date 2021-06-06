@@ -3,6 +3,7 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
+# Todo: database source should be injected use DI principle
 db = SQLAlchemy()
 
 

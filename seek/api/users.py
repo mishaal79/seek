@@ -21,8 +21,7 @@ user = api.model(
 
 
 @api.route("/users")
-@api.route("/users/<id>")
-class Users(Resource):
+class UsersList(Resource):
     @api.expect(user, validate=True)
     def post(self):
         data = request.get_json()
@@ -30,6 +29,7 @@ class Users(Resource):
         password = data.get("password")
         response = {}
 
+        # TODO: Add a user service layer to handle creating of users logic
         current_app.logger.info("Checking whether user already exists")
         if User.query.filter_by(username=username).first():
             response["message"] = "User already exists"
@@ -46,6 +46,13 @@ class Users(Resource):
         response["message"] = "success"
         return response, 201
 
+    @api.marshal_with(user, as_list=True)
+    def get(self):
+        return User.query.all(), 200
+
+
+@api.route("/users/<id>")
+class Users(Resource):
     @api.marshal_with(user)
     def get(self, id):
         user = User.query.filter_by(id=id).first()
