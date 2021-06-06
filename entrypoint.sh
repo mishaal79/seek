@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-DATABASE_HOST = $1
+DATABASE_HOST=$1
 echo "Waiting for database"
 
 while ! nc -zv $DATABASE_HOST 5432; do
