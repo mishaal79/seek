@@ -18,4 +18,4 @@ COPY . .
 RUN adduser --disabled-password seekserviceuser
 USER seekserviceuser
 
-CMD gunicorn --bind 0.0.0.0:$PORT manage:create_app()
+CMD gunicorn --bind 0.0.0.0:$PORT 'manage:create_app()'
