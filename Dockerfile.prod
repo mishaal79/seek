@@ -1,0 +1,21 @@
+FROM python:3.8-slim-buster as base
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+RUN apt-get update && apt-get install -y netcat gcc postgresql \
+    && apt-get clean
+
+
+WORKDIR /usr/src/app
+
+
+COPY ./requirements.txt .
+RUN pip install -r requirements.txt
+
+COPY . .
+
+RUN adduser --disabled-password seekserviceuser
+USER seekserviceuser
+
+CMD gunicorn --bind 0.0.0.0:$PORT manage:create_app()
