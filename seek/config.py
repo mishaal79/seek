@@ -9,12 +9,12 @@ class Base:
 
 class Development(Base):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.getenv("DB_TEST_URL")
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_TEST_URL")
 
 
 class Testing(Base):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = os.getenv("DB_TEST_URL")
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_TEST_URL")
 
 
 class Production(Base):
