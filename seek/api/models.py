@@ -12,12 +12,6 @@ class User(db.Model):
         self.username = username
         self.password = password
 
-    def get_all_users(self) -> list:
-        raise NotImplementedError
-
-    def get_user_by_id(self):
-        raise NotImplementedError
-
     def __eq__(self, o: object) -> bool:
         if isinstance(o, User):
             return self.id == o.id
