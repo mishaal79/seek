@@ -27,6 +27,7 @@ pytest-cov = "*"
 
 [dev-packages]
 pytest = "*"
+hypothesis = "*"
 
 [requires]
 python_version = "3.8"
