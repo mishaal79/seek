@@ -20,4 +20,4 @@ def test_production_config(test_app):
     test_app.config.from_object("seek.config.Production")
     assert test_app.config["SECRET_KEY"] == "secret"
     assert not test_app.config["TESTING"]
-    assert test_app.config["SQLALCHEMY_DATABASE_URI"] == os.getenv("DB_URL")
+    assert test_app.config["SQLALCHEMY_DATABASE_URI"] == os.getenv("DATABASE_URL")
