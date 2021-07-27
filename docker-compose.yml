@@ -9,9 +9,10 @@ services:
     ports:
       - 5555:5000
     environment: 
-      - DB_URL=${DB_URL}
+      - DATABASE_URL=${DATABASE_URL}
       - APP_SETTINGS=seek.config.Production
       - APP_KEY=${APP_KEY}
+      - PORT=5000
     depends_on: 
       - api-db
   
