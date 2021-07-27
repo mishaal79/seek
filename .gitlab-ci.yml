@@ -38,6 +38,3 @@ test:
     CI_DEBUG_TRACE: "true"
   script:
     - pytest -p no:warnings
-    - flake8 $PYTHON_PACKAGE_NAME
-    - black $PYTHON_PACKAGE_NAME
-    - isort $PYTHON_PACKAGE_NAME --check-only
