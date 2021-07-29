@@ -20,7 +20,7 @@ class Ping(Resource):
         }
 
 
-@api.route("/")
+@api.route("/home")
 class Home(Resource):
     def get(self):
         return {
